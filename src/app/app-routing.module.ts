@@ -8,8 +8,9 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: MainComponent }
-      // loadChildren: () => import('./modules/layout/layout.module').then(m => m.LayoutModule)
+      { path: '', component: MainComponent },
+      { path: '', loadChildren: () => import('./views/user/user.module').then(m => m.UserModule) },
+      { path: '**', redirectTo: '' }
     ]
   }
 ];

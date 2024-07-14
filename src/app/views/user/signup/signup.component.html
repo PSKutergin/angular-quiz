@@ -1,0 +1,45 @@
+<section class="form" [formGroup]="signupForm">
+    <section class="container">
+        <section class="form-content">
+            <h1 class="form-title common-title">Регистрация</h1>
+            <section class="form-details">
+                <section class="form-group"
+                    [ngStyle]="{'border-color': name?.invalid && (name?.dirty || name?.touched) ? 'red' : ''}">
+                    <input type="text" class="form-input" id="name" required formControlName="name">
+                    <label for="name" class="form-label">Имя</label>
+                </section>
+                <section class="form-group"
+                    [ngStyle]="{'border-color': lastName?.invalid && (lastName?.dirty || lastName?.touched) ? 'red' : ''}">
+                    <input type="text" class="form-input" id="last-name" required formControlName="lastName">
+                    <label for="last-name" class="form-label">Фамилия</label>
+                </section>
+                <section class="form-group"
+                    [ngStyle]="{'border-color': email?.invalid && (email?.dirty || email?.touched) ? 'red' : ''}">
+                    <input type="text" class="form-input" id="email" required formControlName="email">
+                    <label for="email" class="form-label">Электронная почта</label>
+                </section>
+                <section class="form-group"
+                    [ngStyle]="{'border-color': password?.invalid && (password?.dirty || password?.touched) ? 'red' : ''}">
+                    <input type="password" class="form-input" id="password" required formControlName="password">
+                    <label for="password" class="form-label">Пароль</label>
+                </section>
+                <section class="form-agree">
+                    <input type="checkbox" id="agree" required formControlName="agree">
+                    <label for="agree">
+                        Я ознакомлен <a href="#">с правилами сайта</a>
+                    </label>
+                </section>
+            </section>
+            <section class="form-button">
+                <button class="button" [disabled]="signupForm.invalid" id="process">Перейти к выбору теста</button>
+            </section>
+            <section class="form-link">
+                Уже зарегистрированы?
+                <a routerLink="/login">Войти</a>
+            </section>
+        </section>
+        <section class="form-images">
+            <img src="assets/images/info_image.png" alt="Info image">
+        </section>
+    </section>
+</section>
