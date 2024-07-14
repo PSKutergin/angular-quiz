@@ -15,7 +15,8 @@
                 </section>
             </section>
             <section class="form-button">
-                <button class="button" [disabled]="loginForm.invalid" id="process">Перейти к выбору теста</button>
+                <button class="button" [disabled]="loginForm.invalid" id="process" (click)="login()">Перейти к выбору
+                    теста</button>
             </section>
             <section class="form-link">
                 Нет аккаунта?

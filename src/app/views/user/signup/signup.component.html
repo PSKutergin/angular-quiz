@@ -31,7 +31,8 @@
                 </section>
             </section>
             <section class="form-button">
-                <button class="button" [disabled]="signupForm.invalid" id="process">Перейти к выбору теста</button>
+                <button class="button" [disabled]="signupForm.invalid" id="process" (click)="signup()">Перейти к выбору
+                    теста</button>
             </section>
             <section class="form-link">
                 Уже зарегистрированы?

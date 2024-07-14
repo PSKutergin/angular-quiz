@@ -4,11 +4,11 @@
             <img src="assets/images/logo.png" alt="logo">
         </a>
 
-        <section class="profile" id="profile">
+        <section class="profile" id="profile" *ngIf="userInfo && userInfo.fullName">
             <img src="assets/images/profile.png" alt="profile" class="profile-image">
             <section class="profile-info">
-                <section class="profile-user" id="profile-user"></section>
-                <a routerLink="/logout" class="profile-logout">Выйти</a>
+                <section class="profile-user" id="profile-user">{{userInfo.fullName}}</section>
+                <a (click)="logout()" class="profile-logout">Выйти</a>
             </section>
         </section>
     </section>
