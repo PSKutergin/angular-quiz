@@ -6,12 +6,12 @@
                 Чтобы начать тест, выберите одну из предложенных ниже тем.
             </section>
             <section class="choice-options" id="choice-options">
-                <section class="choice-option">
-                    <section class="choice-option-result">
+                <section class="choice-option" *ngFor="let quiz of quizzes" (click)="chooseQuiz(quiz.id)">
+                    <section class="choice-option-result" *ngIf="quiz.result">
                         <section>Результат</section>
-                        <section>3/5</section>
+                        <section>{{quiz.result}}</section>
                     </section>
-                    <section class="choice-option-text"></section>
+                    <section class="choice-option-text">{{quiz.name}}</section>
                     <section class="choice-option-arrow">
                         <img src="assets/images/arrow.png" alt="Arrow">
                     </section>
