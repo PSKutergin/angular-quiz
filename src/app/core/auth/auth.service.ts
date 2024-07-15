@@ -4,6 +4,7 @@ import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginResponseType } from 'src/types/login-response.type';
 import { LogoutResponseType } from 'src/types/logout-response.type';
+import { RefreshResponseType } from 'src/types/refresh-response.type';
 import { SignupResponseType } from 'src/types/signup-response.type';
 import { UserInfoType } from 'src/types/user-info.type';
 
@@ -41,6 +42,11 @@ export class AuthService {
     return this.http.post<SignupResponseType>(environment.apiUrl + 'signup', { name, lastName, email, password });
   }
 
+  refresh(): Observable<RefreshResponseType> {
+    const refreshToken: string | null = localStorage.getItem(this.refreshTokenKey);
+    return this.http.post<RefreshResponseType>(environment.apiUrl + 'refresh', { refreshToken });
+  }
+
   logout(): Observable<LogoutResponseType> {
     const refreshToken: string | null = localStorage.getItem(this.refreshTokenKey);
     return this.http.post<LogoutResponseType>(environment.apiUrl + 'logout', { refreshToken });
@@ -48,6 +54,18 @@ export class AuthService {
 
   public getLoggedIn(): boolean {
     return this.isLogged;
+  }
+
+  public getTokens(): { accessToken: string, refreshToken: string } | null {
+    const accessToken: string | null = localStorage.getItem(this.accessTokenKey);
+    const refreshToken: string | null = localStorage.getItem(this.refreshTokenKey);
+    if (accessToken && refreshToken) {
+      return {
+        accessToken,
+        refreshToken
+      }
+    }
+    return null;
   }
 
   public setTokens(accessToken: string, refreshToken: string): void {
