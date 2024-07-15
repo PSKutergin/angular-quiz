@@ -91,7 +91,6 @@ export class TestComponent implements OnInit {
   }
 
   complete(): void {
-    console.log(this.userResult);
     const userInfo = this.authService.getUserInfo();
 
     if (userInfo) {
