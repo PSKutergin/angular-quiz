@@ -1,1 +1,46 @@
-<p>test works!</p>
+<section class="test" *ngIf="quiz">
+    <section class="container">
+        <section class="test-pre-title" id="pre-title">{{quiz.name}}</section>
+        <section class="test-progress-bar" id="progress-bar">
+            <section class="test-progress-bar-item" *ngFor="let question of quiz.questions; index as i"
+                [class.active]="i + 1 === currentQuestionIndex" [class.complete]="i + 1 < currentQuestionIndex">
+                <section class="test-progress-bar-item-circle"></section>
+                <section class="test-progress-bar-item-text">Вопрос {{i + 1}}</section>
+            </section>
+        </section>
+        <section class="test-question">
+            <section class="test-question-title" id="title">
+                <span>Вопрос {{currentQuestionIndex}}:</span> {{activeQuestion.question}}
+            </section>
+            <section class="test-question-options" id="options">
+                <section class="test-question-option" *ngFor="let answer of activeQuestion.answers">
+                    <input type="radio" name="answer" id="{{answer.id}}" [value]="answer.id"
+                        [(ngModel)]="chosenAnswerId">
+                    <label for="{{answer.id}}">{{answer.answer}}</label>
+                </section>
+            </section>
+        </section>
+        <section class="test-actions">
+            <section class="test-previous-action">
+                <button class="button button-transparent" id="prev" [disabled]="currentQuestionIndex === 1"
+                    (click)="move(actionTestType.prev)">Назад</button>
+            </section>
+            <section class="test-time">
+                <section class="test-time-text">Осталось времени</section>
+                <section class="test-time-clock" id="timer">{{timerSeconds}}</section>
+            </section>
+            <section class="test-next-action">
+                <button class="button button-transparent" id="next" [disabled]="!chosenAnswerId"
+                    (click)="move(actionTestType.next)">
+                    {{currentQuestionIndex === quiz.questions.length ? 'Завершить' : 'Далее'}}
+                </button>
+            </section>
+        </section>
+        <section class="pass-question">
+            <button class="pass-question-btn" id="pass" (click)="move(actionTestType.pass)">
+                <span>Пропустить вопрос</span>
+                <div></div>
+            </button>
+        </section>
+    </section>
+</section>
